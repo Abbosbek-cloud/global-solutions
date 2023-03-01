@@ -8,9 +8,30 @@ describe("Begin", () => {
     expect(textElement).toBeInTheDocument();
   }, 3000);
 
-  test("Begin test with props", () => {
-    render(<Begin name="lorem" />);
-    const textElement = screen.getByText(/Begin lorem/i);
-    expect(textElement).toBeInTheDocument();
+  describe("Nested tests", () => {
+    // nested test blocks
+    test("Begin test with props", () => {
+      render(<Begin name="lorem" />);
+      const textElement = screen.getByText(/Begin lorem/i);
+      expect(textElement).toBeInTheDocument();
+    });
+  });
+
+  describe.only("Nested tests", () => {
+    // nested test blocks
+    // failed test
+    test("Begin test with props", () => {
+      render(<Begin name="lorem" />);
+      const textElement = screen.getByText(/Start lorem/i);
+      expect(textElement).toBeInTheDocument();
+    });
+  });
+});
+
+describe.skip("Skipped test block", () => {
+  test("Test name", () => {
+    render(<Begin />);
+    const expectedValue = screen.getByText("Skipped test");
+    expect(expectedValue).toBeInTheDocument();
   });
 });

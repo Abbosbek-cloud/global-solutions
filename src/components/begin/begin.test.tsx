@@ -22,7 +22,7 @@ describe("Begin", () => {
     // failed test
     test("Begin test with props", () => {
       render(<Begin name="lorem" />);
-      const textElement = screen.getByText(/Start lorem/i);
+      const textElement = screen.getByText(/Begin lorem/i);
       expect(textElement).toBeInTheDocument();
     });
   });

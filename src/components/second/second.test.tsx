@@ -4,10 +4,27 @@ import { render, screen } from "@testing-library/react";
 describe("Second", () => {
   test("renders correctly", () => {
     render(<Second />);
-    const nameEl = screen.getByRole("textbox");
+    const nameEl = screen.getByRole("textbox", {
+      name: "Name",
+    });
     expect(nameEl).toBeInTheDocument();
+
     const jobLocation = screen.getByRole("combobox");
     expect(jobLocation).toBeInTheDocument();
+
+    const pageHeading = screen.getByRole("heading", {
+      level: 1,
+    });
+    expect(pageHeading).toBeInTheDocument();
+
+    const pageLittleHeading = screen.getByRole("heading", {
+      level: 2,
+    });
+    expect(pageLittleHeading).toBeInTheDocument();
+
+    const textField = screen.getByRole("textbox", {
+      name: "Surname",
+    });
+    expect(textField).toBeInTheDocument();
   });
-  test();
 });

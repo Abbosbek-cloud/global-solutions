@@ -9,6 +9,9 @@ describe("Second", () => {
     });
     expect(nameEl).toBeInTheDocument();
 
+    const labelText = screen.getByLabelText("Name");
+    expect(labelText).toBeInTheDocument();
+
     const jobLocation = screen.getByRole("combobox");
     expect(jobLocation).toBeInTheDocument();
 

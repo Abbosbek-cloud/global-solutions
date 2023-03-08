@@ -8,21 +8,17 @@ import { AppStateProvider } from "./store/Provider";
 
 function App() {
   const { lists, dispatch } = useAppState();
-  console.log(lists);
+
   return (
-    <React.StrictMode>
-      <AppStateProvider>
-        <AppContainer>
-          {lists.map((list) => (
-            <Column text={list.text} key={list.id} id={list.id} />
-          ))}
-          <AddNewItem
-            btnText="+ Add another list"
-            handleAdd={(text) => dispatch(addToList(text))}
-          />
-        </AppContainer>
-      </AppStateProvider>
-    </React.StrictMode>
+    <AppContainer>
+      {lists.map((list) => (
+        <Column text={list.text} key={list.id} id={list.id} />
+      ))}
+      <AddNewItem
+        btnText="+ Add another list"
+        handleAdd={(text) => dispatch(addToList(text))}
+      />
+    </AppContainer>
   );
 }
 

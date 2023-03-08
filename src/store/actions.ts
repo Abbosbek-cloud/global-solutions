@@ -12,3 +12,11 @@ export const addToList = (text: string): Action => ({
   type: "ADD_LIST",
   payload: text,
 });
+
+export const moveList = (draggedId: string, hoverId: string): Action => ({
+  type: "MOVE_LIST",
+  payload: {
+    draggedId,
+    hoverId,
+  },
+});

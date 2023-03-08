@@ -1,6 +1,6 @@
 import { AppState } from "../types/types";
 
-export const AppStore: AppState = {
+export const appData: AppState = {
   lists: [
     {
       id: "0",

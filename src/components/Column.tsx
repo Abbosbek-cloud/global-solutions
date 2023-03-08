@@ -1,4 +1,5 @@
 import { useAppState } from "../hooks/useAppState";
+import { addToTask } from "../store/actions";
 import { AddNewItem } from "./AddItem";
 import { Card } from "./Card";
 import {
@@ -13,7 +14,7 @@ type ColumnProps = React.PropsWithChildren<{
 }>;
 
 export const Column = ({ text, id }: ColumnProps) => {
-  const { getTasksByListId } = useAppState();
+  const { getTasksByListId, dispatch } = useAppState();
   const tasks = getTasksByListId(id);
 
   return (
@@ -22,7 +23,11 @@ export const Column = ({ text, id }: ColumnProps) => {
       {tasks.map((task) => (
         <Card text={task.text} key={task.id} id={task.id} />
       ))}
-      <AddNewItem btnText="+ Add another item" handleAdd={console.log} dark />
+      <AddNewItem
+        btnText="+ Add another item"
+        handleAdd={(text) => dispatch(addToTask(text, id))}
+        dark
+      />
     </ColumnContainer>
   );
 };

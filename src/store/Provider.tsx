@@ -1,14 +1,17 @@
-import { createContext, FC, FunctionComponent } from "react";
-import { AppStore } from "../data/data";
-import { List, Task } from "../types/types";
+import { createContext, FC, Dispatch } from "react";
+import { useImmerReducer } from "use-immer";
+import { appData } from "../data/data";
+import { Action, List, Task } from "../types/types";
+import { appStateReducer } from "./reducer";
+
+type Props = {
+  children: React.ReactNode;
+};
 
 type AppStateContextProps = {
   lists: List[];
   getTasksByListId(id: string): Task[];
-};
-
-type Props = {
-  children: React.ReactNode;
+  dispatch: Dispatch<Action>;
 };
 
 export const AppStateContext = createContext<AppStateContextProps>(
@@ -16,14 +19,16 @@ export const AppStateContext = createContext<AppStateContextProps>(
 );
 
 export const AppStateProvider: FC<Props> = ({ children }) => {
-  const { lists } = AppStore;
+  const [state, dispatch] = useImmerReducer(appStateReducer, appData);
+
+  const { lists } = state;
 
   const getTasksByListId = (id: string) => {
     return lists.find((list) => list.id == id)?.tasks || [];
   };
 
   return (
-    <AppStateContext.Provider value={{ lists, getTasksByListId }}>
+    <AppStateContext.Provider value={{ lists, getTasksByListId, dispatch }}>
       {children}
     </AppStateContext.Provider>
   );

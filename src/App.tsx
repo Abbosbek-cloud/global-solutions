@@ -1,21 +1,24 @@
-import React from "react";
+import React, { createContext } from "react";
 import { AddNewItem } from "./components/AddItem";
 import { Column } from "./components/Column";
-import {
-  AppContainer,
-  CardContainer,
-  ColumnContainer,
-  ColumnTitle,
-} from "./components/StyledComponents";
+import { AppContainer } from "./components/StyledComponents";
+import { useAppState } from "./hooks/useAppState";
+import { AppStateProvider } from "./store/Provider";
 
 function App() {
+  const { lists } = useAppState();
+  console.log(lists);
   return (
-    <AppContainer>
-      <Column text="To Do" />
-      <Column text="In Progress" />
-      <Column text="Done" />
-      <AddNewItem btnText="+ Add another list" handleAdd={console.log} />
-    </AppContainer>
+    <React.StrictMode>
+      <AppStateProvider>
+        <AppContainer>
+          {lists.map((list) => (
+            <Column text={list.text} key={list.id} id={list.id} />
+          ))}
+          <AddNewItem btnText="+ Add another list" handleAdd={console.log} />
+        </AppContainer>
+      </AppStateProvider>
+    </React.StrictMode>
   );
 }
 

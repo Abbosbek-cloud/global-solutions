@@ -1,25 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Column } from "./components/Column";
+import {
+  AppContainer,
+  CardContainer,
+  ColumnContainer,
+  ColumnTitle,
+} from "./components/StyledComponents";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <Column text="To Do" />
+      <Column text="In Progress" />
+      <Column text="Done" />
+    </AppContainer>
   );
 }
 

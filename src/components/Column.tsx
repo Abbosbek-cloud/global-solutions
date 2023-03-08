@@ -1,3 +1,5 @@
+import { AddNewItem } from "./AddItem";
+import { Card } from "./Card";
 import {
   CardContainer,
   ColumnContainer,
@@ -12,9 +14,10 @@ export const Column = ({ text }: ColumnProps) => {
   return (
     <ColumnContainer>
       <ColumnTitle>{text}</ColumnTitle>
-      <CardContainer>FirstItem</CardContainer>
-      <CardContainer>SecondItem</CardContainer>
-      <CardContainer>ThirdItem</CardContainer>
+      <Card text="First item" />
+      <Card text="Second item" />
+      <Card text="Third item" />
+      <AddNewItem btnText="+ Add another item" handleAdd={console.log} dark />
     </ColumnContainer>
   );
 };

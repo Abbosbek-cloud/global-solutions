@@ -1,4 +1,5 @@
 import React from "react";
+import { AddNewItem } from "./components/AddItem";
 import { Column } from "./components/Column";
 import {
   AppContainer,
@@ -13,6 +14,7 @@ function App() {
       <Column text="To Do" />
       <Column text="In Progress" />
       <Column text="Done" />
+      <AddNewItem btnText="+ Add another list" handleAdd={console.log} />
     </AppContainer>
   );
 }

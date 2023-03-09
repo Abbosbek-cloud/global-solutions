@@ -11,6 +11,7 @@ export type List = {
 
 export type AppState = {
   lists: List[];
+  draggedItem: DragItem | null;
 };
 
 interface AddListAction {
@@ -28,8 +29,21 @@ interface MoveList {
   payload: { draggedId: string; hoverId: string };
 }
 
-type Action = AddListAction | AddTaskAction | MoveList;
+interface DragItemAction {
+  type: "SET_DRAGGED_ITEM";
+  payload: DragItem | null;
+}
+
+type Action = AddListAction | AddTaskAction | MoveList | DragItemAction;
 
 type Item = {
   id: string;
 };
+
+type ColumnDragItem = {
+  id: string;
+  text: string;
+  type: "COLUMN";
+};
+
+export type DragItem = ColumnDragItem;

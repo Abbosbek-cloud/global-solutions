@@ -1,4 +1,4 @@
-import { Action } from "../types/types";
+import { Action, DragItem } from "../types/types";
 
 export const addToTask = (text: string, listId: string): Action => ({
   type: "ADD_TASK",
@@ -19,4 +19,9 @@ export const moveList = (draggedId: string, hoverId: string): Action => ({
     draggedId,
     hoverId,
   },
+});
+
+export const setDraggedItem = (draggedItem: DragItem | null): Action => ({
+  type: "SET_DRAGGED_ITEM",
+  payload: draggedItem,
 });

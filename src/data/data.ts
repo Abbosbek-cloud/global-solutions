@@ -1,6 +1,7 @@
 import { AppState } from "../types/types";
 
 export const appData: AppState = {
+  draggedItem: null,
   lists: [
     {
       id: "0",
